@@ -9,7 +9,8 @@ module.exports = {
   async execute(interaction) {
     if (
       interaction.user.id !== process.env.pikabooID &&
-      interaction.user.id !== process.env.kd1ID
+      interaction.user.id !== process.env.kd1ID &&
+      interaction.user.id !== process.env.ltypecekID
     ) {
       return interaction.reply({
         content: "jdi do prdele, ty zkurvenej curaku",
