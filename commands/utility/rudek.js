@@ -35,6 +35,6 @@ module.exports = {
       }, 300);
     }
 
-    await interaction.reply("done");
+    await interaction.reply(`done ${rudekMute ? "muted" : "unmuted"}`);
   },
 };
