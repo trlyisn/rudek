@@ -32,7 +32,7 @@ module.exports = {
         if (member?.voice?.channel && rudekMute) {
           await member.voice.disconnect().catch(() => {});
         }
-      }, 1000);
+      }, 300);
     }
 
     await interaction.reply("done");
