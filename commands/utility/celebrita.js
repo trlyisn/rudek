@@ -20,15 +20,15 @@ module.exports = {
       });
     }
 
+    await interaction.reply({
+      content: "KDD CS PLISSS",
+      ephemeral: true,
+    });
+
     for (let i = 0; i < 10; i++) {
       await interaction.channel.send(
         `<@!${interaction.options.getUser("user").id}>`
       );
     }
-
-    await interaction.reply({
-      content: "KDD CS PLISSS",
-      ephemeral: true,
-    });
   },
 };
