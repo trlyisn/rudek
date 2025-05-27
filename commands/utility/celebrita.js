@@ -4,9 +4,16 @@ require("dotenv").config();
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("celebrita")
-    .setDescription("KDD CS PLISSS"),
+    .setDescription("KDD CS PLISSS")
+    .addUserOption((option) =>
+      option.setName("user").setDescription("koho vyspamovat").setRequired(true)
+    ),
   async execute(interaction) {
-    if (interaction.user.id !== process.env.pikabooID) {
+    if (
+      interaction.user.id !== process.env.pikabooID &&
+      interaction.user.id !== process.env.kd1ID &&
+      interaction.user.id !== process.env.ltypecekID
+    ) {
       return interaction.reply({
         content: "jdi do prdele, ty zkurvenej curaku",
         ephemeral: true,
@@ -14,7 +21,9 @@ module.exports = {
     }
 
     for (let i = 0; i < 10; i++) {
-      await interaction.channel.send(`<@!${process.env.kd1ID}>`);
+      await interaction.channel.send(
+        `<@!${interaction.options.getUser("user").id}>`
+      );
     }
 
     await interaction.reply({
