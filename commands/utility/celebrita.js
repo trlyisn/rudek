@@ -8,6 +8,8 @@ module.exports = {
     .addUserOption((option) =>
       option.setName("user").setDescription("koho vyspamovat").setRequired(true)
     ),
+  // TODO: Add cooldown to this command
+  // TODO: String with a message that will be sent to the "celebrita"
   async execute(interaction) {
     if (
       interaction.user.id !== process.env.pikabooID &&
