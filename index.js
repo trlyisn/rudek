@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Events, Collection, GatewayIntentBits } = require("discord.js");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
 const client = new Client({
@@ -86,4 +87,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
   }
 });
 
-client.login(process.env.TOKEN);
+(async () => {
+  await mongoose.connect(process.env.MongoDB_URI);
+  console.log("Connected to MongoDB");
+
+  client.login(process.env.TOKEN);
+})();

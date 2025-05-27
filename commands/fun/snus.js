@@ -1,4 +1,5 @@
 const { SlashCommandBuilder } = require("discord.js");
+const UserProfile = require("../../schemas/UserProfile");
 require("dotenv").config();
 
 module.exports = {
@@ -13,7 +14,32 @@ module.exports = {
       });
     }
 
-    const snus = Math.random() < 0.5 ? "vlevo" : "vpravo";
-    await interaction.reply(`dej to ${snus}`);
+    try {
+      await interaction.deferReply();
+      let userProfile = await UserProfile.findOne({
+        userId: interaction.user.id,
+      });
+
+      if (userProfile) {
+      } else {
+        userProfile = new UserProfile({
+          userId: interaction.user.id,
+          snusCount: 0,
+        });
+      }
+      const snus = Math.random() < 0.5 ? "vlevo" : "vpravo";
+      userProfile.snusCount += 1;
+      await userProfile.save();
+
+      interaction.editReply(
+        `dej to ${snus}, tvuj snus count je zatim ${userProfile.snusCount}`
+      );
+    } catch (error) {
+      console.error("Error executing snus command:", error);
+      interaction.editReply({
+        content: "necos pojebal, koukni do konzole",
+        ephemeral: true,
+      });
+    }
   },
 };
