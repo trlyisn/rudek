@@ -44,12 +44,9 @@ client.once(Events.ClientReady, (readyClient) => {
 const SPECIFIED_USER_ID = process.env.rudekPicoID;
 
 client.on("messageCreate", async (message) => {
-  // Check if the message is from the specified user and not from the bot itself
   if (message.author.id === SPECIFIED_USER_ID && !message.author.bot) {
     try {
-      // Delete the user's message
       await message.delete();
-      // Send a reply
       await message.channel.send(
         `https://tenor.com/view/egg-twitch-stream-charlieart-charlieartifact-gif-23622302`
       );
