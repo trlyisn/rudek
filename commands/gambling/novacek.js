@@ -13,9 +13,9 @@ module.exports = {
       });
 
       if (userProfile) {
-        if (userProfile.balance >= 500) {
+        if (userProfile.newcommer) {
           return interaction.editReply({
-            content: "Uz mas dost kreditu, ty chuda mrdko",
+            content: "Uz jsi dostal balicek, ty zkurvenej chudaku",
             ephemeral: false,
           });
         } else {

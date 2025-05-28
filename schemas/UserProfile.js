@@ -10,6 +10,10 @@ const userProfileSchema = new Schema(
       type: Number,
       default: 0,
     },
+    newcommer: {
+      type: Boolean,
+      default: false,
+    },
     snusCount: {
       type: Number,
       default: 0,
