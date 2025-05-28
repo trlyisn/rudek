@@ -17,8 +17,7 @@ module.exports = {
         .setDescription("kolikrat (5-20, default 10)")
         .setMinValue(5)
         .setMaxValue(20)
-        .setDefaultValue(10)
-        .setRequired(true)
+        .setRequired(false)
     ),
   // TODO: Add cooldown to this command
   async execute(interaction) {
@@ -38,8 +37,9 @@ module.exports = {
       ephemeral: false,
     });
 
-    const number = interaction.options.getNumber("number");
+    let number = interaction.options.getNumber("number");
     if (number < 5 || number > 20) {
+      number = 10;
       return interaction.reply({
         content: "Zadej cislo mezi 5 a 20",
         ephemeral: true,
