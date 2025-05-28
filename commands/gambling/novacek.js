@@ -20,6 +20,7 @@ module.exports = {
           });
         } else {
           userProfile.balance += 500;
+          userProfile.newcommer = true;
           await userProfile.save();
           return interaction.editReply({
             content: `Dostal jsi 500 kreditu, ted jich mas ${userProfile.balance}`,
