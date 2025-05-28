@@ -32,7 +32,7 @@ module.exports = {
         if (member?.voice?.channel && danverdMute) {
           await member.voice.disconnect().catch(() => {});
         }
-      }, 1000);
+      }, 300);
     }
 
     await interaction.reply("top 1 big mac eater in narnia");
