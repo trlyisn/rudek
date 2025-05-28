@@ -16,7 +16,7 @@ module.exports = {
 
     const resultEmbed = new EmbedBuilder()
       .setColor(isWin ? "Green" : "Red")
-      .setTitle("Slot Game Result")
+      .setTitle("vysledky slotu")
       .setDescription(`**Vysledek:** ${slotResults.join(" ")}`)
       .setFooter({
         text: isWin ? "Ses dobrej, vyhrals" : "ty pico zkurvena, prohrals",
