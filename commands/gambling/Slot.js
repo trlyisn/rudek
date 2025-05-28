@@ -36,7 +36,7 @@ module.exports = {
         const isWin = slotResults.every((emoji) => emoji === slotResults[0]);
 
         if (isWin) {
-          userProfile.balance += 20;
+          userProfile.balance += 1000;
           await userProfile.save();
         }
 
