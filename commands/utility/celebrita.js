@@ -38,8 +38,11 @@ module.exports = {
     });
 
     let number = interaction.options.getNumber("number");
-    if (number < 5 || number > 20) {
+    if (!number) {
       number = 10;
+    }
+
+    if (number < 5 || number > 20) {
       return interaction.reply({
         content: "Zadej cislo mezi 5 a 20",
         ephemeral: true,
