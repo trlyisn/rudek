@@ -10,6 +10,15 @@ module.exports = {
     )
     .addStringOption((option) =>
       option.setName("text").setDescription("co mu chces").setRequired(true)
+    )
+    .addNumberOption((option) =>
+      option
+        .setName("number")
+        .setDescription("kolikrat (5-20, default 10)")
+        .setMinValue(5)
+        .setMaxValue(20)
+        .setDefaultValue(10)
+        .setRequired(true)
     ),
   // TODO: Add cooldown to this command
   async execute(interaction) {
@@ -29,7 +38,15 @@ module.exports = {
       ephemeral: false,
     });
 
-    for (let i = 0; i < 10; i++) {
+    const number = interaction.options.getNumber("number");
+    if (number < 5 || number > 20) {
+      return interaction.reply({
+        content: "Zadej cislo mezi 5 a 20",
+        ephemeral: true,
+      });
+    }
+
+    for (let i = 0; i < number; i++) {
       await interaction.channel.send(
         `<@!${
           interaction.options.getUser("user").id
