@@ -22,6 +22,6 @@ module.exports = {
         text: isWin ? "Ses dobrej, vyhrals" : "ty pico zkurvena, prohrals",
       });
 
-    channel.send({ embeds: [exampleEmbed] });
+    channel.send({ embeds: [resultEmbed] });
   },
 };
