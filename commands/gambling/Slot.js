@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const emojiList = ["🍒", "🍋", "🍊", "🍉", "🍇", "🍓", "🍍", "🍎", "🍏", "🍌"];
 
@@ -14,10 +14,14 @@ module.exports = {
 
     const isWin = slotResults.every((emoji) => emoji === slotResults[0]);
 
-    const resultMessage = `🎰 **vysledek:** ${slotResults.join(" ")} 🎰\n\n${
-      isWin ? "Ses dobrej, vyhrals" : "ty pico zkurvena, prohrals"
-    }`;
+    const resultEmbed = new EmbedBuilder()
+      .setColor(isWin ? "Green" : "Red")
+      .setTitle("Slot Game Result")
+      .setDescription(`**Vysledek:** ${slotResults.join(" ")}`)
+      .setFooter({
+        text: isWin ? "Ses dobrej, vyhrals" : "ty pico zkurvena, prohrals",
+      });
 
-    await interaction.reply(resultMessage);
+    channel.send({ embeds: [exampleEmbed] });
   },
 };
