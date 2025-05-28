@@ -7,9 +7,11 @@ module.exports = {
     .setDescription("KDD CS PLISSS")
     .addUserOption((option) =>
       option.setName("user").setDescription("koho vyspamovat").setRequired(true)
+    )
+    .addStringOption((option) =>
+      option.setName("text").setDescription("co mu chces").setRequired(true)
     ),
   // TODO: Add cooldown to this command
-  // TODO: String with a message that will be sent to the "celebrita"
   async execute(interaction) {
     if (
       interaction.user.id !== process.env.pikabooID &&
@@ -24,12 +26,14 @@ module.exports = {
 
     await interaction.reply({
       content: "KDD CS PLISSS",
-      ephemeral: true,
+      ephemeral: false,
     });
 
     for (let i = 0; i < 10; i++) {
       await interaction.channel.send(
-        `<@!${interaction.options.getUser("user").id}>`
+        `<@!${
+          interaction.options.getUser("user").id
+        }> ${interaction.options.getString("text")}`
       );
     }
   },
