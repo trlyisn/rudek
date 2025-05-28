@@ -5,7 +5,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("balance")
     .setDescription("at vis kolik mas kreditu ty zasrana zidovska chuju")
-    .setUserOption((option) =>
+    .addUserOption((option) =>
       option
         .setName("user")
         .setDescription("koho chces zkontrolovat")
