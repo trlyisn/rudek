@@ -9,7 +9,15 @@ function getRandomEmoji() {
 }
 
 module.exports = {
-  data: new SlashCommandBuilder().setName("slot").setDescription("tocky tocky"),
+  data: new SlashCommandBuilder()
+    .setName("slot")
+    .setDescription("tocky tocky")
+    .addIntegerOption((option) =>
+      option
+        .setName("sazka")
+        .setDescription("Kolik chceš vsadit (minimálně 10)")
+        .setRequired(true)
+    ),
   async execute(interaction) {
     try {
       await interaction.deferReply();
@@ -17,14 +25,24 @@ module.exports = {
         userId: interaction.user.id,
       });
 
+      let sazka = interaction.options.getInteger("sazka");
+
       if (userProfile) {
-        if (userProfile.balance < 10) {
+        if (userProfile.balance < sazka) {
           return interaction.editReply({
-            content: "Musis mi aspon deset kretidu, ty chuda mrdko",
+            content: "Musis mit tolik kolik chces vsadit, ty chuda mrdko",
             ephemeral: false,
           });
         }
-        userProfile.balance -= 10;
+
+        if (interaction.options.getInteger("sazka") < 10) {
+          return interaction.editReply({
+            content: "Musis vsadit alespoň 10 kreditu, ty zidovska mrdko",
+            ephemeral: true,
+          });
+        }
+
+        userProfile.balance -= sazka;
         await userProfile.save();
 
         const slotResults = [
@@ -36,7 +54,7 @@ module.exports = {
         const isWin = slotResults.every((emoji) => emoji === slotResults[0]);
 
         if (isWin) {
-          userProfile.balance += 1000;
+          userProfile.balance += sazka * 100;
           await userProfile.save();
         }
 
