@@ -50,7 +50,7 @@ module.exports = {
               : `ty pico zkurvena, prohrals\nTvuj balanc: ${userProfile.balance}`,
           });
 
-        await interaction.reply({ embeds: [resultEmbed] });
+        await interaction.editReply({ embeds: [resultEmbed] });
       } else {
         userProfile = new UserProfile({
           userId: interaction.user.id,
@@ -59,7 +59,7 @@ module.exports = {
       }
     } catch (error) {
       console.error("Error executing slot command:", error);
-      return interaction.reply({
+      return interaction.editReply({
         content: "necos pojebal, koukni do konzole, ty zkurvenej curaku",
         ephemeral: true,
       });
