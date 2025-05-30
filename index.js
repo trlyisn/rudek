@@ -47,9 +47,6 @@ client.on("messageCreate", async (message) => {
   if (message.author.id === SPECIFIED_USER_ID && !message.author.bot) {
     try {
       await message.delete();
-      await message.channel.send(
-        `https://tenor.com/view/egg-twitch-stream-charlieart-charlieartifact-gif-23622302`
-      );
     } catch (error) {
       console.error("Error deleting message:", error);
     }
