@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const UserProfile = require("../../schemas/UserProfile");
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
         .limit(10);
       if (userProfiles.length === 0) {
         return interaction.editReply({
-          content: "Žádní uživatelé nemají kredity.",
+          content: "vsichni jsou chudaci, nikdo nema kredity",
           ephemeral: true,
         });
       }
@@ -26,10 +26,15 @@ module.exports = {
         })
         .join("\n");
 
-      return interaction.editReply({
-        content: `**Leaderboard:**\n${leaderboard}`,
-        ephemeral: false,
-      });
+      const leaderboardEmbed = new EmbedBuilder()
+        .setColor("Yellow")
+        .setTitle("Leaderboard")
+        .setDescription(`${leaderboard}`)
+        .setFooter({
+          text: `lets light up the scoreboard!`,
+        });
+
+      return interaction.editReply({ embeds: [leaderboardEmbed] });
     } catch (error) {
       console.error("Error fetching leaderboard:", error);
       return interaction.editReply({
