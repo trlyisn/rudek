@@ -35,6 +35,8 @@ module.exports = {
       }, 300);
     }
 
-    await interaction.reply("top 1 big mac eater in narnia");
+    await interaction.reply(
+      `top 1 big mac eater in narnia ${danverdMute ? "mute" : "unmute"}`
+    );
   },
 };
