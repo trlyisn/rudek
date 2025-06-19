@@ -42,20 +42,9 @@ client.once(Events.ClientReady, (readyClient) => {
 });
 
 const SPECIFIED_USER_ID = process.env.rudekPicoID;
-const SPECIFIED_USER_ID2 = process.env.danverdPicoID;
 
 client.on("messageCreate", async (message) => {
   if (message.author.id === SPECIFIED_USER_ID && !message.author.bot) {
-    try {
-      await message.delete();
-    } catch (error) {
-      console.error("Error deleting message:", error);
-    }
-  }
-});
-
-client.on("messageCreate", async (message) => {
-  if (message.author.id === SPECIFIED_USER_ID2 && !message.author.bot) {
     try {
       await message.delete();
     } catch (error) {
