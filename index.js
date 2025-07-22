@@ -41,6 +41,7 @@ client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
 
+/*
 const SPECIFIED_USER_ID = process.env.rudekPicoID;
 
 client.on("messageCreate", async (message) => {
@@ -52,6 +53,7 @@ client.on("messageCreate", async (message) => {
     }
   }
 });
+*/
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
